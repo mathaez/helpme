@@ -19,3 +19,8 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`Serveur lancé sur http://localhost:${port}`);
 });
+
+app.get('/liste-tickets', (req, res) => {
+    res.render('liste-tickets');
+  });
+  
