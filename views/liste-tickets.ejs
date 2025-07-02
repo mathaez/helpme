@@ -6,12 +6,41 @@
   <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
-
   <%- include('fragments/header') %>
 
-
+  <main>
+    <% if (tickets.length === 0) { %>
+      <p>Aucun ticket</p>
+    <% } else { %>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Auteur</th>
+            <th>Date</th>
+            <th>Titre</th>
+            <th>Description</th>
+            <th>État</th>
+            <th>Détail</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% tickets.forEach(t => { %>
+            <tr>
+              <td><%= t.id %></td>
+              <td><%= typeof t.auteur === 'object' ? t.auteur.name : t.auteur %></td>
+              <td><%= format(t.creation, "dd/MM/yyyy HH:mm:ss") %></td>
+              <td><%= t.titre %></td>
+              <td><%= t.description.length > 50 ? t.description.slice(0,50) + '...' : t.description %></td>
+              <td><%= t.etat %></td>
+              <td><a href="#">Détail</a></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } %>
+  </main>
 
   <%- include('fragments/footer') %>
-
 </body>
 </html>
